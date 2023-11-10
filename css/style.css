@@ -1,0 +1,33 @@
+body {
+  background-color: aqua;
+}
+
+.wrapper {
+  border: 2px solid red;
+  max-width: 400px;
+  max-height: 720px;
+  display: grid;
+  grid-template-columns: repeat(4, calc(25% - 20px));
+  grid-template-rows: repeat(7, calc(14.2857142857% - 5px));
+  gap: 20px;
+}
+.wrapper div {
+  width: 100%;
+  height: 100%;
+  border: 5px solid black;
+  border-radius: 5px;
+}
+.wrapper div[id^=number] {
+  color: red;
+}
+.wrapper div:hover {
+  cursor: pointer;
+  border-color: red;
+  background-color: aquamarine;
+}
+.wrapper .output {
+  grid-row: 1;
+  grid-column: 1/5;
+}
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL3Nhc3Mvc3R5bGUuc2NzcyIsInN0eWxlLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFQTtFQUNFLHNCQUFBO0FDREY7O0FER0E7RUFFRSxxQkFBQTtFQUVBLGdCQUFBO0VBQ0EsaUJBQUE7RUFDQSxhQUFBO0VBQ0Esa0RBQUE7RUFDQSx5REFBQTtFQUNBLFNBQUE7QUNGRjtBREdFO0VBQ0UsV0FBQTtFQUNBLFlBQUE7RUFDQSx1QkFBQTtFQUNBLGtCQW5CUTtBQ2tCWjtBREVJO0VBQ0UsVUFBQTtBQ0FOO0FER0k7RUFDRSxlQUFBO0VBQ0EsaUJBQUE7RUFDQSw0QkFBQTtBQ0ROO0FESUU7RUFDRSxXQUFBO0VBQ0EsZ0JBQUE7QUNGSiIsImZpbGUiOiJzdHlsZS5jc3MifQ== */

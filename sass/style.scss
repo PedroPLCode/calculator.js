@@ -1,0 +1,35 @@
+$base-size: 5px;
+
+body {
+  background-color: aqua;
+}
+.wrapper {
+
+  border: 2px solid red;
+
+  max-width: 400px;
+  max-height: 720px;
+  display: grid;
+  grid-template-columns: repeat(4, calc(25% - $base-size * 4));
+  grid-template-rows: repeat(7, calc((100% / 7) - ($base-size)));
+  gap: $base-size * 4;
+  div {
+    width: 100%;
+    height: 100%;
+    border: $base-size solid black;
+    border-radius: $base-size;
+    &[id^="number"] {
+      color: red;
+    }
+
+    &:hover {
+      cursor: pointer;
+      border-color: red;
+      background-color: aquamarine;
+    }
+  }
+  .output {
+    grid-row: 1;
+    grid-column: 1 / 5;
+  }
+}
