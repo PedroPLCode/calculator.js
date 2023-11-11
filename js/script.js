@@ -13,6 +13,8 @@ wrapper.addEventListener('click', event => {
     handleClickResultButton();
   } else if (clicked === 'clear') {
     handleClickClearButton();
+  } else if (clicked === 'del') {
+    handleClickDelButton();
   } else if (clicked.startsWith('action')) {
     handleClickActionButton(clicked);
   } else if (clicked.startsWith('memo')) {
@@ -20,9 +22,7 @@ wrapper.addEventListener('click', event => {
   } else {
     handleClickNumberButton(clicked);
   }
-
-  }
-);
+});
 
 const handleClickNumberButton = clicked => {
   if (!action) {
@@ -45,20 +45,32 @@ const handleClickClearButton = () => {
   number2 = '';
   action = '';
   clearOutputBox();
-  printOutputBox('clear')
+  printOutputBox('clear');
+}
+
+const handleClickDelButton = () => {
+  if (!number2) {
+    number1 = number1.slice(0, -1);
+    clearOutputBox();
+    printOutputBox(number1, action, number2);
+  } else {
+    number2 = number2.slice(0, -1);
+    clearOutputBox();
+    printOutputBox(number1, action, number2);
+  }
 }
 
 const handleClickResultButton = () => {
   if (action === '+') {
     finalResult = parseFloat(number1) + parseFloat(number2);
   } else if (action === '-') {
-    finalResult = number1 - number2;
+    finalResult = parseFloat(number1) - parseFloat(number2);
   } else if (action === '*') {
-    finalResult = number1 * number2;
+    finalResult = parseFloat(number1) * parseFloat(number2);
   } else if (action === '/') {
-    finalResult = number1 / number2;
+    finalResult = parseFloat(number1) / parseFloat(number2);
   } else if (action === '%') {
-    finalResult = number1 % number2;
+    finalResult = parseFloat(number1) % parseFloat(number2);
   } else {
     finalResult = 0;
   }
@@ -71,15 +83,19 @@ const handleClickResultButton = () => {
 
 const handleClickMemoButton = clicked => {
   if (clicked === 'memo+') {
-  if (number1) {
-    memory = number1;
-  }
-  if (action) {
-    memory += action;
-  }
-  if (number2) {
-    memory += number2;
-  } } else if (clicked === 'memo-') {
+    if (number1) {
+      memory = number1;
+      activeMemoryButton();
+    }
+    if (action) {
+      memory += action;
+      activeMemoryButton();
+    }
+    if (number2) {
+      memory += number2;
+      activeMemoryButton();
+   }
+  } else if (clicked === 'memo-') {
   if (!number1) {
     number1 = memory;
     if (!memory) {
@@ -94,16 +110,25 @@ const handleClickMemoButton = clicked => {
 } else if (clicked === 'memo_remove') {
   memory = 'memo empty';
   clearOutputBox();
-  printOutputBox('memo clear')
+  printOutputBox('memo clear');
+  deactiveMemoryButton();
 } }
+
+const activeMemoryButton = () => {
+  document.getElementById('memo+').classList.add('active');
+}
+
+const deactiveMemoryButton = () => {
+  document.getElementById('memo+').classList.remove('active');
+}
 
 const printOutputBox = (first, second = '', third = '') => {
   let div = document.createElement('div');
   const msg = `${first} ${second} ${third}`;
   div.innerHTML = msg;
-  document.querySelector('.output').appendChild(div);
+  document.getElementById('output').appendChild(div);
 }
 
 const clearOutputBox = () => {
-  document.querySelector('.output').innerHTML = '';
+  document.getElementById('output').innerHTML = '';
 }

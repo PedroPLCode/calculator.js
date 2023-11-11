@@ -1,35 +1,100 @@
-$base-size: 5px;
+$base-size: 2px;
+$color-one: rgb(61, 243, 6);
+$color-two: rgb(16, 148, 16);
+$color-three: rgb(87, 197, 92);
+$color-four: rgb(191, 233, 2);
+$color-five: rgb(0, 0, 0);
+$color-six: rgb(203, 235, 62);
+$color-seven: rgb(10, 39, 8);
 
 body {
-  background-color: aqua;
+  height: 95vh;
+  background: $color-five;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: bold;
 }
+
 .wrapper {
-
-  border: 2px solid red;
-
   max-width: 400px;
-  max-height: 720px;
+  max-height: 520px;
+  height: 100%;
+  width: 100%;
   display: grid;
-  grid-template-columns: repeat(4, calc(25% - $base-size * 4));
-  grid-template-rows: repeat(7, calc((100% / 7) - ($base-size)));
+  grid-template-columns: repeat(4, calc((100% / 4) - ($base-size * 3)));
+  grid-template-rows: repeat(7, calc((100% / 7) - ($base-size * 3.4)));
   gap: $base-size * 4;
-  div {
-    width: 100%;
-    height: 100%;
-    border: $base-size solid black;
-    border-radius: $base-size;
-    &[id^="number"] {
-      color: red;
-    }
 
-    &:hover {
-      cursor: pointer;
-      border-color: red;
-      background-color: aquamarine;
-    }
+  .output, .button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: $base-size * 2;
+    font-size: $base-size * 15;
   }
+
   .output {
     grid-row: 1;
     grid-column: 1 / 5;
+    background: linear-gradient(0deg, $color-five, $color-seven, $color-five);
+    border: $base-size solid $color-four;
+    color: $color-four;
+  }
+
+  .button {
+    width: 100%;
+    height: 100%;
+    border-radius: $base-size * 2;
+    background: linear-gradient(0deg, $color-one, $color-two, $color-three);
+    box-shadow: inset (-$base-size/2) (-$base-size/2) $base-size/2 black;
+    font-size: $base-size * 15;
+    color: $color-six;
+    transition: .5s box-shadow, .5s font-size, .5s color;
+    &[id^="number"] {
+      color: $color-four;
+    }
+    &[id^="clear"] {
+      grid-row: 7;
+      grid-column: 1 / 3;
+    }
+    &[id^="del"] {
+      grid-row: 7;
+      grid-column: 3 / 5;
+    }
+    &:hover {
+      cursor: pointer;
+      border-color: $color-two;
+      box-shadow: inset $base-size/2 $base-size/2 $base-size/2 black;
+      font-size: $base-size * 14;
+    }
+    &.active {
+      color: $color-one;
+    }
+  }
+}
+
+footer, header {
+  width: 100%;
+  height: 82px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: $base-size * 10;
+  color: $color-four;
+  h4 {
+  }
+  a {
+    text-decoration: none;
+    color: $color-four;
+    transition: .5s transform;
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.1);
+    }
   }
 }
