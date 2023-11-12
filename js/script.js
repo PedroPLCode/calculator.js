@@ -1,14 +1,16 @@
-let number1 = "";
-let number2 = "";
-let action = "";
-let memory = "";
-let finalResult = 0;
+let number1 = '';
+let number2 = '';
+let action = '';
+let memory = '';
 
 const wrapper = document.querySelector('.wrapper');
 wrapper.addEventListener('click', event => {
   event.preventDefault();
   const clicked = event.target.getAttribute('id');
+  calculator(clicked);
+});
 
+const calculator = clicked => {
   if (clicked === 'result') {
     handleClickResultButton();
   } else if (clicked === 'clear') {
@@ -22,14 +24,10 @@ wrapper.addEventListener('click', event => {
   } else {
     handleClickNumberButton(clicked);
   }
-});
+}
 
 const handleClickNumberButton = clicked => {
-  if (!action) {
-    number1 += clicked.replace("number", "");
-  } else {
-    number2 += clicked.replace("number", "");
-  }
+  !action ? number1 += clicked.replace('number', '') : number2 += clicked.replace('number', '');
   clearOutputBox();
   printOutputBox(number1, action, number2)
 }
@@ -49,18 +47,13 @@ const handleClickClearButton = () => {
 }
 
 const handleClickDelButton = () => {
-  if (!number2) {
-    number1 = number1.slice(0, -1);
-    clearOutputBox();
-    printOutputBox(number1, action, number2);
-  } else {
-    number2 = number2.slice(0, -1);
-    clearOutputBox();
-    printOutputBox(number1, action, number2);
-  }
+  !number2 ? number1 = number1.slice(0, -1) : number2 = number2.slice(0, -1);
+  clearOutputBox();
+  printOutputBox(number1, action, number2);
 }
 
 const handleClickResultButton = () => {
+  let finalResult = '';
   if (action === '+') {
     finalResult = parseFloat(number1) + parseFloat(number2);
   } else if (action === '-') {
@@ -68,13 +61,16 @@ const handleClickResultButton = () => {
   } else if (action === '*') {
     finalResult = parseFloat(number1) * parseFloat(number2);
   } else if (action === '/') {
-    finalResult = parseFloat(number1) / parseFloat(number2);
+    (number2 !== '0') ? finalResult = (parseFloat(number1) / parseFloat(number2)) : finalResult = 'error: zero division';
   } else if (action === '%') {
     finalResult = parseFloat(number1) % parseFloat(number2);
   } else {
     finalResult = 0;
   }
-  number1 = finalResult;
+  if (isNaN(finalResult)) {
+    finalResult = 'error';
+  }
+  number1 = finalResult.toString();
   number2 = '';
   action = '';
   clearOutputBox();
@@ -108,9 +104,7 @@ const handleClickMemoButton = clicked => {
   clearOutputBox();
   printOutputBox(number1, action, number2);
 } else if (clicked === 'memo_remove') {
-  memory = 'memo empty';
-  clearOutputBox();
-  printOutputBox('memo clear');
+  memory = '';
   deactiveMemoryButton();
 } }
 

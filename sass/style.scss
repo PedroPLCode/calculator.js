@@ -1,3 +1,5 @@
+/* Variables */
+
 $base-size: 2px;
 $color-one: rgb(61, 243, 6);
 $color-two: rgb(16, 148, 16);
@@ -6,6 +8,8 @@ $color-four: rgb(191, 233, 2);
 $color-five: rgb(0, 0, 0);
 $color-six: rgb(203, 235, 62);
 $color-seven: rgb(10, 39, 8);
+
+/* Global */
 
 body {
   height: 95vh;
@@ -18,6 +22,8 @@ body {
   font-weight: bold;
 }
 
+/* Main calculator section */
+
 .wrapper {
   max-width: 400px;
   max-height: 520px;
@@ -27,7 +33,6 @@ body {
   grid-template-columns: repeat(4, calc((100% / 4) - ($base-size * 3)));
   grid-template-rows: repeat(7, calc((100% / 7) - ($base-size * 3.4)));
   gap: $base-size * 4;
-
   .output, .button {
     display: flex;
     flex-direction: column;
@@ -36,7 +41,6 @@ body {
     border-radius: $base-size * 2;
     font-size: $base-size * 15;
   }
-
   .output {
     grid-row: 1;
     grid-column: 1 / 5;
@@ -44,7 +48,6 @@ body {
     border: $base-size solid $color-four;
     color: $color-four;
   }
-
   .button {
     width: 100%;
     height: 100%;
@@ -77,6 +80,8 @@ body {
   }
 }
 
+/* Footer and Header */
+
 footer, header {
   width: 100%;
   height: 82px;
@@ -86,8 +91,6 @@ footer, header {
   align-items: center;
   font-size: $base-size * 10;
   color: $color-four;
-  h4 {
-  }
   a {
     text-decoration: none;
     color: $color-four;
