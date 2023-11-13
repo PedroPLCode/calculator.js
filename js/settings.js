@@ -5,7 +5,7 @@ export const settings = {
   attributes: {
     div: 'div',
     id: 'id',
-    memo: 'memo+',
+    memo: 'memo_plus',
     output: 'output',
     clear: 'clear',
   },

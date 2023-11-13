@@ -14,7 +14,9 @@ class Calculator {
       this.handleClickActionButton(clicked);
     } else if (clicked.startsWith('memo')) {
       this.handleClickMemoButton(clicked);
-    } else {
+    } else if (clicked === 'dot') {
+      this.handleClickDotButton();
+    } else if (clicked.startsWith('number')) {
       this.handleClickNumberButton(clicked);
     }
   }
@@ -25,8 +27,30 @@ class Calculator {
     this.printOutputBox(app.number1, app.action, app.number2)
   }
 
+  handleClickDotButton() {
+    !app.action ? app.number1 += '.' : app.number2 += '.';
+    this.clearOutputBox();
+    this.printOutputBox(app.number1, app.action, app.number2)
+  }
+
   handleClickActionButton(clicked) {
-    app.action = clicked.replace('action', '');
+    switch (clicked.replace('action', '')) {
+      case '_plus':
+        app.action = '+';
+        break;
+      case '_minus':
+        app.action = '-';
+        break;
+      case '_multi':
+        app.action = '*';
+        break;
+      case '_divide':
+        app.action = '/';
+        break;
+      case '_modulo':
+        app.action = '%';
+        break;
+    }
     this.clearOutputBox();
     this.printOutputBox(app.number1, app.action, app.number2);
   }
@@ -76,7 +100,7 @@ class Calculator {
 
   handleClickMemoButton(clicked) {
     switch (clicked) {
-      case 'memo+':
+      case 'memo_plus':
         if (app.number1) {
           app.memory.memo1 = app.number1;
           app.memory.activateMemory();
@@ -86,7 +110,7 @@ class Calculator {
           app.memory.activateMemory();
        }
        break;
-      case 'memo-':
+      case 'memo_minus':
         if (!app.number1) {
           app.number1 = app.memory.memo1;
           app.number2 = app.memory.memo2;

@@ -34,6 +34,7 @@ body {
   grid-template-columns: repeat(4, calc((100% / 4) - ($base-size * 3)));
   grid-template-rows: repeat(7, calc((100% / 7) - ($base-size * 3.4)));
   gap: $base-size * 4;
+
   .output, .button {
     display: flex;
     flex-direction: column;
@@ -42,46 +43,55 @@ body {
     border-radius: $base-size * 2;
     font-size: $base-size * 15;
   }
+
   .output {
     grid-row: 1;
     grid-column: 1 / 5;
     background: linear-gradient(0deg, $color-five, $color-seven, $color-five);
     border: $base-size solid $color-four;
     color: $color-four;
+
     &.error {
       border-color: $color-error;
       color: $color-error;
     }
   }
+
   .button {
     width: 100%;
     height: 100%;
     border-radius: $base-size * 2;
     background: linear-gradient(0deg, $color-one, $color-two, $color-three);
-    box-shadow: inset (-$base-size/2) (-$base-size/2) $base-size/2 black;
+    box-shadow: inset (-$base-size / 2) (-$base-size / 2) $base-size / 2 black;
     font-size: $base-size * 15;
     color: $color-six;
     transition: .5s box-shadow, .5s font-size, .5s color;
+
     &[id^="number"] {
       color: $color-four;
     }
+
     &[id^="clear"] {
       grid-row: 7;
       grid-column: 1 / 3;
     }
+
     &[id^="del"] {
       grid-row: 7;
       grid-column: 3 / 5;
     }
+
     &:hover {
       cursor: pointer;
       border-color: $color-two;
-      box-shadow: inset $base-size/2 $base-size/2 $base-size/2 black;
+      box-shadow: inset $base-size / 2 $base-size / 2 $base-size / 2 black;
       font-size: $base-size * 14;
     }
+
     &.active {
       color: $color-one;
     }
+
     &.error {
       color: $color-error;
     }
@@ -99,10 +109,12 @@ footer, header {
   align-items: center;
   font-size: $base-size * 10;
   color: $color-four;
+
   a {
     text-decoration: none;
     color: $color-four;
     transition: .5s transform;
+
     &:hover {
       cursor: pointer;
       transform: scale(1.1);
