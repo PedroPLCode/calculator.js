@@ -33,9 +33,11 @@ export const app = {
 
   initActions() {
     this.dom.wrapper.addEventListener('click', event => {
-    event.preventDefault();
-    const clicked = event.target.getAttribute(settings.attributes.id);
-    this.app.calculator(clicked);
+      event.preventDefault();
+      const clicked = event.target.getAttribute(settings.attributes.id);
+      if (clicked !== null) {
+        this.app.calculator(clicked);
+      }
     });
   }
 }
